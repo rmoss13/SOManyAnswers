@@ -9,28 +9,24 @@ import com.rmoss.somanyanswers.R
 import com.rmoss.somanyanswers.model.Question
 
 
-class QuestionRecyclerViewAdapter : RecyclerView.Adapter<QuestionRecyclerViewAdapter.QuestionRecyclerViewHolder>() {
+class QuestionRecyclerViewAdapter(private var questions: List<Question>) : RecyclerView.Adapter<QuestionRecyclerViewAdapter.ViewHolder>() {
 
-    private var questions: List<Question> = emptyList()
-
-    fun setQuestionList(questionList: MutableList<Question>) {
-        questions = questionList
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): QuestionRecyclerViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.fragment_question, parent, false)
-        return QuestionRecyclerViewHolder(view)
+        return ViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: QuestionRecyclerViewHolder, position: Int) {
+    override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val item = questions[position]
-        viewHolder.titleView.text = item.title
+        with(viewHolder) {
+            titleView.text = item.title
+        }
     }
 
     override fun getItemCount(): Int = questions.size
 
-    inner class QuestionRecyclerViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val titleView: TextView = view.findViewById(R.id.question_title)
     }
 }

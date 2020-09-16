@@ -2,7 +2,7 @@ package com.rmoss.somanyanswers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.rmoss.somanyanswers.questionlist.QuestionFragment
+import com.rmoss.somanyanswers.questionlist.QuestionListFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        val fragment = QuestionFragment()
+        val fragment = QuestionListFragment()
         fragmentTransaction.add(R.id.fragment_container, fragment)
         fragmentTransaction.commit()
     }

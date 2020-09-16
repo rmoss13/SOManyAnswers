@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SOManyAnswers</string>
+    <string name="no_questions_found">No Questions Found, Sorry!</string>
 </resources>

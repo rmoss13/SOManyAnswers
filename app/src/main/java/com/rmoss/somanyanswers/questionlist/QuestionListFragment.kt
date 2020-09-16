@@ -2,11 +2,11 @@ package com.rmoss.somanyanswers.questionlist
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.rmoss.somanyanswers.MainActivity.MainActivity.inflateView
 import com.rmoss.somanyanswers.R
 import com.rmoss.somanyanswers.model.Question
 
@@ -17,9 +17,8 @@ class QuestionListFragment : Fragment() {
         set(value) {
             field = value
             recyclerView.adapter =
-                QuestionRecyclerViewAdapter(questionList)
+                QuestionRecyclerViewAdapter(requireContext(), questionList)
         }
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,13 +30,6 @@ class QuestionListFragment : Fragment() {
     )
         .apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = QuestionRecyclerViewAdapter(questionList)
+            adapter = QuestionRecyclerViewAdapter(context, questionList)
         }
-
-    @Suppress("UNCHECKED_CAST")
-    private fun <T : View> inflateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        layout: Int
-    ): T = inflater.inflate(layout, container, false) as T
 }

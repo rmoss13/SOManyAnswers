@@ -11,7 +11,10 @@ import com.rmoss.somanyanswers.R
 import com.rmoss.somanyanswers.model.Question
 
 
-class QuestionRecyclerViewAdapter(private var context: Context, private var questions: List<Question>) : RecyclerView.Adapter<QuestionRecyclerViewAdapter.ViewHolder>() {
+class QuestionRecyclerViewAdapter(
+    private var context: Context,
+    private var questions: List<Question>
+) : RecyclerView.Adapter<QuestionRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)

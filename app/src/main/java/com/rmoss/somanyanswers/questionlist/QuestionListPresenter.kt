@@ -25,7 +25,7 @@ class QuestionListPresenter(private val questionListFragment: QuestionListFragme
         return filter
     }
 
-    inner   class HTTPAsyncTask : AsyncTask<String?, String?, String?>() {
+    inner class HTTPAsyncTask : AsyncTask<String?, String?, String?>() {
 
         override fun doInBackground(vararg params: String?): String? {
             return qaService.loadQuestionList()

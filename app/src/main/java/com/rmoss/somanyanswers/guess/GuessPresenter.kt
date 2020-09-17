@@ -8,7 +8,7 @@ import com.rmoss.somanyanswers.StackOverflowQAService
 import com.rmoss.somanyanswers.model.Answer
 import com.rmoss.somanyanswers.model.AnswerParsedJson
 
-class GuessPresenter(private val guessFragment: GuessFragment){
+class GuessPresenter(private val guessFragment: GuessFragment) {
     private val qaService: QuestionAnswerService = StackOverflowQAService()
 
     fun loadAnswers(id: Int) {
@@ -27,11 +27,12 @@ class GuessPresenter(private val guessFragment: GuessFragment){
         }
     }
 
-    inner   class HTTPAsyncTask : AsyncTask<Int?, String?, String?>() {
+    inner class HTTPAsyncTask : AsyncTask<Int?, String?, String?>() {
 
         override fun doInBackground(vararg params: Int?): String? {
             return qaService.loadAnswersByQuestionId(params[0]!!)
         }
+
         override fun onPostExecute(result: String?) {
             guessFragment.setAnswerList(formatResult(result!!))
         }

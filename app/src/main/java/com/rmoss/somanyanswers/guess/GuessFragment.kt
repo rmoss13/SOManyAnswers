@@ -2,6 +2,7 @@ package com.rmoss.somanyanswers.guess
 
 import android.graphics.Color
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,7 +20,7 @@ class GuessFragment(private val question: Question) : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: GuessRecyclerViewAdapter
     private lateinit var guessPresenter: GuessPresenter
-    private var correctAnswer: Answer? = null
+    private lateinit var correctAnswer: Answer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +35,20 @@ class GuessFragment(private val question: Question) : Fragment() {
     ): View {
         val view = inflater.inflate(R.layout.fragment_guess, container, false)
         view.findViewById<TextView>(R.id.guess_title).text = question.title
-        view.findViewById<TextView>(R.id.guess_body).text = question.body
+        view.findViewById<TextView>(R.id.guess_body).apply {
+            text = question.body
+            movementMethod = ScrollingMovementMethod()
+        }
 
+        setupRecyclerView(view)
+        return view
+    }
+
+    private fun setupRecyclerView(view: View) {
         recyclerView = view.findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerViewAdapter
         }
-        return view
     }
 
     override fun onResume() {
@@ -49,23 +57,31 @@ class GuessFragment(private val question: Question) : Fragment() {
     }
 
     fun showResult(answer: Answer) {
-        if(answer.isAccepted){
-            updateResultText(R.string.correct_answer, ContextCompat.getColor(requireContext(), R.color.correct_answer_background))
+        if (answer.isAccepted) {
+            updateResultText(
+                R.string.correct_answer,
+                ContextCompat.getColor(requireContext(), R.color.correct_answer_background)
+            )
         } else {
             updateResultText(R.string.wrong_answer, Color.RED)
-            result_answer_text.visibility = View.VISIBLE
-            result_answer_text.text = answer.body
+            result_answer_text.apply {
+                visibility = View.VISIBLE
+                text = correctAnswer.body
+                movementMethod = ScrollingMovementMethod()
+            }
         }
         recyclerViewAdapter.notifyDataSetChanged()
     }
 
     fun setAnswerList(answerList: List<Answer>) {
-        correctAnswer = answerList.find { answer -> answer.isAccepted }
+        correctAnswer = answerList.find { answer -> answer.isAccepted }!!
         recyclerViewAdapter.setAnswerList(answerList)
     }
 
     private fun updateResultText(string_id: Int, color_id: Int) {
-        result_text.text = getString(string_id)
-        result_text.setTextColor(color_id)
+        result_text.apply {
+            text = getString(string_id)
+            setTextColor(color_id)
+        }
     }
 }

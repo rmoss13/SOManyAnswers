@@ -19,8 +19,8 @@ class QuestionListPresenter(private val questionListFragment: QuestionListFragme
         val parsedJson = Klaxon().parse<QuestionParsedJson>(result)
         val filter =
             parsedJson!!.items.filter { question -> question.isAnswered && question.answerCount > 1 }
-        for(question in filter) {
-          question.body = Html.fromHtml(question.body, 0).toString()
+        filter.forEach { question ->
+            question.body = Html.fromHtml(question.body, 0).toString()
         }
         return filter
     }

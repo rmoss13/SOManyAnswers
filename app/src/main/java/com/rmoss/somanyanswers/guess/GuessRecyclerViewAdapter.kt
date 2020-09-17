@@ -18,10 +18,7 @@ class GuessRecyclerViewAdapter(
     private var answers: List<Answer> = emptyList()
     private var answerSelected = false
 
-    fun setAnswerList(answerList: List<Answer>) {
-        answers = answerList
-        notifyDataSetChanged()
-    }
+    override fun getItemCount(): Int = answers.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -36,15 +33,26 @@ class GuessRecyclerViewAdapter(
             viewHolder.container.setOnClickListener {
                 if (!answerSelected) {
                     answerSelected = true
-                    viewHolder.container.setBackgroundColor(
-                        getColorWith(R.color.selected_background)
-                    )
-                    viewHolder.body.setTextColor(
-                        getColorWith(R.color.selected_text)
-                    )
+                    showSelectedAnswer(viewHolder)
                     guessFragment.showResult(answer)
                 }
             }
+        }
+    }
+
+    fun setAnswerList(answerList: List<Answer>) {
+        answers = answerList
+        notifyDataSetChanged()
+    }
+
+    private fun showSelectedAnswer(viewHolder: ViewHolder) {
+        viewHolder.apply {
+            container.setBackgroundColor(
+                getColorWith(R.color.selected_background)
+            )
+            body.setTextColor(
+                getColorWith(R.color.selected_text)
+            )
         }
     }
 
@@ -54,8 +62,6 @@ class GuessRecyclerViewAdapter(
             color_id
         )
     }
-
-    override fun getItemCount(): Int = answers.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val container: View = view.findViewById(R.id.answer_container)

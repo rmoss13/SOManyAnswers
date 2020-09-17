@@ -16,7 +16,7 @@ import com.rmoss.somanyanswers.model.Answer
 import com.rmoss.somanyanswers.model.Question
 import kotlinx.android.synthetic.main.fragment_guess.*
 
-class GuessFragment(private val question: Question) : Fragment() {
+class GuessFragment(private var question: Question = Question(0, "", "", false, 0, emptyList(), 0)) : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: GuessRecyclerViewAdapter
     private lateinit var guessPresenter: GuessPresenter
@@ -34,7 +34,7 @@ class GuessFragment(private val question: Question) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_guess, container, false)
-        view.findViewById<TextView>(R.id.guess_title).text = question.title
+        view.findViewById<TextView>(R.id.guess_title).text = question!!.title
         view.findViewById<TextView>(R.id.guess_body).apply {
             text = question.body
             movementMethod = ScrollingMovementMethod()
@@ -53,7 +53,7 @@ class GuessFragment(private val question: Question) : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        guessPresenter.loadAnswers(question.id)
+        guessPresenter.loadAnswers(question!!.id)
     }
 
     fun showResult(answer: Answer) {

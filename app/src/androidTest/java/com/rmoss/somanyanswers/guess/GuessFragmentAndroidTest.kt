@@ -1,4 +1,4 @@
-package com.rmoss.somanyanswers.questionlist
+package com.rmoss.somanyanswers.guess
 
 import android.os.Bundle
 import androidx.fragment.app.testing.FragmentScenario
@@ -8,18 +8,18 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.hasChildCount
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.rmoss.somanyanswers.R
-import com.rmoss.somanyanswers.model.Question
+import com.rmoss.somanyanswers.model.Answer
 import org.junit.Before
 import org.junit.Test
 
-class QuestionListFragmentAndroidTest {
+class GuessFragmentAndroidTest {
 
-    private lateinit var scenario: FragmentScenario<QuestionListFragment>
+    private lateinit var scenario: FragmentScenario<GuessFragment>
 
     @Before
     fun setUp() {
         val fragmentArgs = Bundle()
-        scenario = launchFragmentInContainer<QuestionListFragment>(fragmentArgs)
+        scenario = launchFragmentInContainer<GuessFragment>(fragmentArgs)
     }
 
     @Test
@@ -29,12 +29,13 @@ class QuestionListFragmentAndroidTest {
 
     @Test
     fun canBeUpdatedWithPopulatedList() {
-        val questionList: List<Question> = listOf(
-            Question(1, "Question 1", "This is a body1", true, 2, emptyList(), 0),
-            Question(2, "Question 2","This is a body2", true, 2, emptyList(), 0)
+        val answerList: List<Answer> = listOf(
+            Answer(1, "Answer body 1", true),
+            Answer(2, "Answer body 2", false),
+            Answer(3, "Answer body 3", false)
         )
 
-        scenario.onFragment { it.questionList = questionList }
-        onView(withId(R.id.list)).check(matches(hasChildCount(questionList.size)))
+        scenario.onFragment { it.setAnswerList(answerList) }
+        onView(withId(R.id.list)).check(matches(hasChildCount(answerList.size)))
     }
 }

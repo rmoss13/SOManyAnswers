@@ -11,5 +11,5 @@
         android:layout_height="wrap_content"
         android:padding="@dimen/item_padding"
         android:textSize="@dimen/item_text_size"
-        android:background="@drawable/item_answer"/>
+        android:background="@drawable/item_style"/>
 </LinearLayout>

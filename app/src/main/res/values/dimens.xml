@@ -5,4 +5,11 @@
     <dimen name="guess_margin">16dp</dimen>
     <dimen name="answer_body_height">48dp</dimen>
     <dimen name="result_text_margin">16dp</dimen>
+    <dimen name="item_padding">12dp</dimen>
+    <dimen name="question_list_margin_start_and_end">8dp</dimen>
+    <dimen name="item_text_size">16sp</dimen>
+    <dimen name="guess_title_text_size">18sp</dimen>
+    <dimen name="guess_body_text_size">16sp</dimen>
+    <dimen name="result_text_text_size">24sp</dimen>
+    <dimen name="result_answer_text_text_size">16sp</dimen>
 </resources>

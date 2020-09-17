@@ -10,14 +10,15 @@
     <TextView
         android:id="@+id/guess_title"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/guess_title_height"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/guess_margin"
         android:layout_marginEnd="@dimen/guess_margin"
         android:layout_marginTop="@dimen/guess_margin"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:textSize="18sp"/>
+        android:textSize="@dimen/guess_title_text_size"
+        android:textStyle="bold"/>
 
     <TextView
         android:id="@+id/guess_body"
@@ -31,16 +32,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guess_title"
-        android:textSize="16sp"/>
+        android:textSize="@dimen/guess_body_text_size"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/guess_margin"
-        android:layout_marginEnd="@dimen/guess_margin"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_margin="@dimen/guess_margin"
         app:layout_constraintTop_toBottomOf="@id/guess_body"
         app:layout_constraintBottom_toTopOf="@id/result_footer"
         tools:listitem="@layout/item_answer" />
@@ -61,7 +59,7 @@
             android:id="@+id/result_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp" />
+            android:textSize="@dimen/result_text_text_size" />
 
         <TextView
             android:id="@+id/result_answer_text"
@@ -69,7 +67,7 @@
             android:layout_height="wrap_content"
             android:maxLines="6"
             android:scrollbars = "vertical"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/result_answer_text_text_size"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

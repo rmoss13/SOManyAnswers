@@ -6,8 +6,8 @@
     android:name="com.rmoss.somanyanswers.QuestionFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
+    android:layout_marginStart="@dimen/question_list_margin_start_and_end"
+    android:layout_marginEnd="@dimen/question_list_margin_start_and_end"
     app:layoutManager="LinearLayoutManager"
     tools:context=".questionlist.QuestionListFragment"
     tools:listitem="@layout/item_question" />

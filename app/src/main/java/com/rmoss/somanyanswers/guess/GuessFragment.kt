@@ -20,7 +20,7 @@ class GuessFragment(private val question: Question) : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var recyclerViewAdapter: GuessRecyclerViewAdapter
     private lateinit var guessPresenter: GuessPresenter
-    private lateinit var correctAnswer: Answer
+    private var correctAnswer: Answer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +66,7 @@ class GuessFragment(private val question: Question) : Fragment() {
             updateResultText(R.string.wrong_answer, Color.RED)
             result_answer_text.apply {
                 visibility = View.VISIBLE
-                text = correctAnswer.body
+                text = correctAnswer!!.body
                 movementMethod = ScrollingMovementMethod()
             }
         }
@@ -74,8 +74,9 @@ class GuessFragment(private val question: Question) : Fragment() {
     }
 
     fun setAnswerList(answerList: List<Answer>) {
-        correctAnswer = answerList.find { answer -> answer.isAccepted }!!
-        recyclerViewAdapter.setAnswerList(answerList)
+        correctAnswer = answerList.find { answer -> answer.isAccepted }
+        if(correctAnswer != null)
+            recyclerViewAdapter.setAnswerList(answerList)
     }
 
     private fun updateResultText(string_id: Int, color_id: Int) {

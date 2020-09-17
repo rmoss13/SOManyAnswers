@@ -22,13 +22,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-
-
-        questionListPresenter = QuestionListPresenter(questionListFragment)
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragment_container, questionListFragment)
         fragmentTransaction.commit()
+
+        questionListPresenter = QuestionListPresenter(questionListFragment)
+        questionListPresenter.loadQuestions()
     }
 
     fun openGuessFragment(question: Question) {

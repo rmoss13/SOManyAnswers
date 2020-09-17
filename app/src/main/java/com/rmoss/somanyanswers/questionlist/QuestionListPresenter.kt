@@ -1,25 +1,35 @@
 package com.rmoss.somanyanswers.questionlist
 
-import com.rmoss.somanyanswers.MainActivity
+import android.os.AsyncTask
 import com.rmoss.somanyanswers.QuestionService
 import com.rmoss.somanyanswers.StackOverflowQuestionService
 import com.rmoss.somanyanswers.model.Question
 
-class QuestionListPresenter(private val questionListFragment: QuestionListFragment) {
-    private val questionService: QuestionService
-    private val callback: QuestionService.OnResponseCallback = object :
-        QuestionService.OnResponseCallback {
+class QuestionListPresenter(private val questionListFragment: QuestionListFragment){
+    private val questionService: QuestionService = StackOverflowQuestionService()
 
-        override fun onResponse(questions: MutableList<Question>) {
-            questionListFragment.questionList = questions
-        }
-
-        override fun onError() {
-            (questionListFragment.activity as MainActivity).showNoQuestionsFound()
-        }
+    fun loadQuestions() {
+        HTTPAsyncTask().execute()
     }
 
-    init {
-        questionService = StackOverflowQuestionService(callback)
+    private fun formatResult(result: String?): List<Question> {
+        return listOf(
+            Question(1, "What can I do? 1"),
+            Question(2, "What can I do? 2"),
+            Question(3, "What can I do? 3"),
+            Question(4, "What can I do? 4")
+        )
+    }
+
+    inner   class HTTPAsyncTask : AsyncTask<String?, String?, String?>() {
+
+        override fun doInBackground(vararg params: String?): String? {
+//            return questionService.loadQuestionList()
+            return ""
+        }
+        override fun onPostExecute(result: String?) {
+            questionListFragment.questionList = formatResult(result)
+        }
+
     }
 }

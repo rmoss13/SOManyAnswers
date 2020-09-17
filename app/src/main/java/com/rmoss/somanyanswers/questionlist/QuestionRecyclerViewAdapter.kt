@@ -15,16 +15,16 @@ class QuestionRecyclerViewAdapter(private var context: Context, private var ques
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_question, parent, false)
+            .inflate(R.layout.item_question, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        val item = questions[position]
+        val question = questions[position]
         with(viewHolder) {
-            titleView.text = item.title
+            titleView.text = question.title
             container.setOnClickListener {
-                (context as MainActivity).openGuessFragment(item)
+                (context as MainActivity).openGuessFragment(question)
             }
         }
     }

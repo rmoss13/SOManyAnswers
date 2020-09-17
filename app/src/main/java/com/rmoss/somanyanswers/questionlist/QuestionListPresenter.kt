@@ -1,12 +1,12 @@
 package com.rmoss.somanyanswers.questionlist
 
 import android.os.AsyncTask
-import com.rmoss.somanyanswers.QuestionService
-import com.rmoss.somanyanswers.StackOverflowQuestionService
+import com.rmoss.somanyanswers.QuestionAnswerService
+import com.rmoss.somanyanswers.StackOverflowQAService
 import com.rmoss.somanyanswers.model.Question
 
 class QuestionListPresenter(private val questionListFragment: QuestionListFragment){
-    private val questionService: QuestionService = StackOverflowQuestionService()
+    private val qaService: QuestionAnswerService = StackOverflowQAService()
 
     fun loadQuestions() {
         HTTPAsyncTask().execute()
@@ -24,7 +24,7 @@ class QuestionListPresenter(private val questionListFragment: QuestionListFragme
     inner   class HTTPAsyncTask : AsyncTask<String?, String?, String?>() {
 
         override fun doInBackground(vararg params: String?): String? {
-//            return questionService.loadQuestionList()
+//            return qaService.loadQuestionList()
             return ""
         }
         override fun onPostExecute(result: String?) {

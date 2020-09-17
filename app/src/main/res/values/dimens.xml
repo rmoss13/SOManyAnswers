@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
+    <dimen name="guess_title_height">56dp</dimen>
+    <dimen name="guess_margin_start_and_end">16dp</dimen>
+    <dimen name="answer_body_height">48dp</dimen>
 </resources>

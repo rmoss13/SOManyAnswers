@@ -19,6 +19,19 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textSize="24sp"/>
 
+    <TextView
+        android:id="@+id/guess_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxHeight="60dp"
+        android:layout_marginStart="@dimen/guess_margin"
+        android:layout_marginEnd="@dimen/guess_margin"
+        android:layout_marginTop="@dimen/guess_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guess_title"
+        android:textSize="18sp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
@@ -27,7 +40,7 @@
         android:layout_marginEnd="@dimen/guess_margin"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="24dp"
-        app:layout_constraintTop_toBottomOf="@id/guess_title"
+        app:layout_constraintTop_toBottomOf="@id/guess_body"
         app:layout_constraintBottom_toTopOf="@id/result_footer"
         tools:listitem="@layout/item_answer" />
 

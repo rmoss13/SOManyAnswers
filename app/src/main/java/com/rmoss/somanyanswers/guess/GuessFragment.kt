@@ -33,8 +33,9 @@ class GuessFragment(private val question: Question) : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_guess, container, false)
-        val guessTitle = view.findViewById<TextView>(R.id.guess_title)
-        guessTitle.text = question.title
+        view.findViewById<TextView>(R.id.guess_title).text = question.title
+        view.findViewById<TextView>(R.id.guess_body).text = question.body
+
         recyclerView = view.findViewById<RecyclerView>(R.id.list).apply {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerViewAdapter

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">SOManyAnswers</string>
     <string name="no_questions_found">No Questions Found, Sorry!</string>
+    <string name="correct_answer">Correct!</string>
+    <string name="wrong_answer">The correct answer is…</string>
+    <string name="result_icon_content">Icon of Result</string>
 </resources>

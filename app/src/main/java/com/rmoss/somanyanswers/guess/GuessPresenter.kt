@@ -5,7 +5,7 @@ import com.rmoss.somanyanswers.QuestionAnswerService
 import com.rmoss.somanyanswers.StackOverflowQAService
 import com.rmoss.somanyanswers.model.Answer
 
-class GuessPresenter(private val answerRecyclerViewAdapter: AnswerRecyclerViewAdapter){
+class GuessPresenter(private val guessFragment: GuessFragment){
     private val qaService: QuestionAnswerService = StackOverflowQAService()
 
     fun loadAnswers(id: Int) {
@@ -28,7 +28,7 @@ class GuessPresenter(private val answerRecyclerViewAdapter: AnswerRecyclerViewAd
             return ""
         }
         override fun onPostExecute(result: String?) {
-            answerRecyclerViewAdapter.setAnswerList(formatResult(result))
+            guessFragment.setAnswerList(formatResult(result))
         }
 
     }
